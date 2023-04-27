@@ -7,7 +7,7 @@ const CACHE = {}
 
 export const search = async({query}) => {
     if (CACHE[query]) {
-        return CACHE[query]
+        return {results: CACHE[query]}
     }
 
     const { hits } = await index.search(query, {

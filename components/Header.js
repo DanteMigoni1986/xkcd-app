@@ -5,9 +5,11 @@ export function Header() {
     const [results, setResults] = useState([])
     const searchRef = useRef()
 
-    const q = searchRef.current?.value
+    const getValue = () => searchRef.current?.value
 
     const handleChange = () => {
+        const q = getValue()
+
         fetch(`/api/search?q=${q}`)
             .then(res => res.json())
             .then(searchResults => {
@@ -34,7 +36,7 @@ export function Header() {
                                 Boolean(results.length) && <div className="absolute top-0 left-0">
                                     <ul className='z-50 w-full border rounded-lg shadow-xl border-gray-50 bg-white overflow-hidden'>
                                         <li className='m-0' key='all-results'>
-                                            <Link href={`/search?q=${q}`} className="italic overflow-hidden text-sm text-ellipsis whitespace-nowrap 
+                                            <Link href={`/search?q=${getValue()}`} className="italic overflow-hidden text-sm text-ellipsis whitespace-nowrap 
                                             font-semibold block hover:bg-slate-200 px-2 py-1 text-gray-400">
                                                 Ver {results.length} resultados
                                             </Link>
