@@ -4,8 +4,10 @@ import styles from '@/styles/Home.module.css'
 import * as fs from 'node:fs/promises';
 import Link from 'next/link'
 import { Layout } from '@/components/Layout.js';
+import { useI18N } from '@/context/i18n.js';
 
 export default function Home({ latestComics }) {
+  const {t} = useI18N()
   return (
     <>
       <Head>
@@ -15,7 +17,7 @@ export default function Home({ latestComics }) {
       </Head>
 
       <Layout>
-          <h2 className='text-3xl font-bold text-center mb-10'>Latest comics</h2>
+          <h2 className='text-3xl font-bold text-center mb-10'>{t("LATEST_COMICS")}</h2>
           <section className='columns-1 gap-2 max-w-md m-auto sm:columns-2 md:columns-3'>
             {
               latestComics.map(comic => {
